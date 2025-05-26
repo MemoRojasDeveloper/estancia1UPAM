@@ -93,6 +93,11 @@ $query = mysqli_query($con, $sql);
             userForm.classList.toggle('show');
             toggleBtn.classList.toggle('active');
         });
+
+        toggleBtn1.addEventListener('click', function() {
+        userForm.classList.toggle('show');
+        toggleBtn1.classList.toggle('active');
+    });
     });
     </script>
 </body>

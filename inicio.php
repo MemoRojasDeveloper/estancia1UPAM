@@ -44,8 +44,9 @@ $query = mysqli_query($con, $sql);
 
         <div class="table-container">
             <h2>Progresos</h2>
-            <button id="toggleForm" class="toggle-btn">+</button>
-            <table>
+            <!-- Botón para mostrar/ocultar la tabla -->
+            <button id="toggleTable" class="toggle-btn">+</button>
+            <table id="muestra_datos">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -81,18 +82,27 @@ $query = mysqli_query($con, $sql);
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Seleccionamos el botón y el formulario por su ID
-            const toggleBtn = document.getElementById('toggleForm');
-            const userForm = document.getElementById('aerolabMindkids'); // ID correcto del formulario
+    const toggleBtn = document.getElementById('toggleForm');
+    const userForm = document.getElementById('aerolabMindkids');
+    
+    toggleBtn.addEventListener('click', function() {
+        userForm.classList.toggle('show');
+        toggleBtn.classList.toggle('active');
+    });
 
-            // Agregamos un event listener para el botón
-            toggleBtn.addEventListener('click', function() {
-                // Alternamos la clase 'show' en el formulario
-                userForm.classList.toggle('show');
-                // Alternamos la clase 'active' en el botón
-                toggleBtn.classList.toggle('active');
-            });
-        });
+    // Animación para mostrar/ocultar la tabla
+    const toggleTableBtn = document.getElementById('toggleTable');
+    const tableContainer = document.querySelector('.table-container');
+    const table = document.getElementById('muestra_datos');
+
+    toggleTableBtn.addEventListener('click', function() {
+        // Controlar la visibilidad de la tabla con 'max-height' y 'opacity'
+        tableContainer.classList.toggle('show');
+        tableContainer.classList.toggle('hide');
+        toggleTableBtn.classList.toggle('active');
+    });
+});
+
     </script>
 </body>
 </html>

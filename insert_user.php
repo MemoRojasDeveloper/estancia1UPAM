@@ -14,6 +14,6 @@ VALUES ('$nombre', '$apellidoPaterno', '$apellidoMaterno', '$usuario', '$passwor
 $query = mysqli_query($con, $sql);
 
 if($query){
-    Header("Location: inicio.php");
+    Header("Location: usuarios.php");
 };
 ?>

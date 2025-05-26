@@ -4,7 +4,7 @@ $con = connection();
 
 $id = $_POST['id_mindkids'];
 
-$sql  = "SELECT id_mindkids, fecha, avance, curso, comentarios FROM aerolab_mindkids WHERE id = '$id'";
+$sql  = "SELECT id_mindkids, fecha, avance, curso, comentarios FROM aerolab_mindkids WHERE id_mindkids = '$id'";
 $query = mysqli_query($con, $sql);
 $row = mysqli_fetch_array($query);
 ?>
@@ -35,9 +35,9 @@ $row = mysqli_fetch_array($query);
         <div class="form-container">
             <h2>Actualizar Registro</h2>
             <form action="edit_mindkids.php" method="POST">
-                <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                <input type="hidden" name="id_mindkids" value="<?= $row['id_mindkids'] ?>">
 
-                <input type="text" name="fecha" value="<?= $row['fecha'] ?>" placeholder="Fecha" required>
+                <input type="date" name="fecha" value="<?= $row['fecha'] ?>" placeholder="Fecha" required>
                 <input type="text" name="avance" value="<?= $row['avance'] ?>" placeholder="Avances" required>
                 <input type="text" name="curso" value="<?= $row['curso'] ?>" placeholder="Curso" required>
                 <input type="text" name="comentarios" value="<?= $row['comentarios'] ?>" placeholder="Comentarios" required>
