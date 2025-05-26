@@ -110,11 +110,29 @@ form button:hover {
 }
 
 .table-container {
-    overflow-x: auto;
+    position: relative;
+    /*overflow-x: auto;
     transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
     overflow: hidden;
-    max-height: 0; /* Inicialmente está oculta */
+    max-height: 0; /* Inicialmente está oculta 
     opacity: 0; /* Inicialmente está oculta */
+}
+
+.tabla-wrapper {
+    overflow: hidden;
+    max-height: 1000px;
+    opacity: 1;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.tabla-wrapper.hide {
+    max-height: 0;
+    opacity: 0;
+}
+
+.tabla-wrapper.show {
+    max-height: 1000px;
+    opacity: 1;
 }
 
 /* Nuevo: la tabla se mostrará al activar 'show' */

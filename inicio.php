@@ -43,66 +43,73 @@ $query = mysqli_query($con, $sql);
         </div>
 
         <div class="table-container">
-            <h2>Progresos</h2>
-            <!-- Botón para mostrar/ocultar la tabla -->
-            <button id="toggleTable" class="toggle-btn">+</button>
-            <table id="muestra_datos">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Fecha</th>
-                        <th>Avance</th>
-                        <th>Curso</th>
-                        <th>Comentarios</th>
-                        <th>Editar</th>
-                        <!--<th>Cambiar Estatus</th>-->
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while($row = mysqli_fetch_array($query)): ?>
-                    <tr>
-                        <td><?=$row['id_mindkids']?></td>
-                        <td><?=$row['fecha']?></td>
-                        <td><?=$row['avance']?></td>
-                        <td><?=$row['curso']?></td>
-                        <td><?=$row['comentarios']?></td>
-                        <!--<td><=$row['estatus']?></td>-->
-                        <td>
-                            <form action="update_mindkids.php" method="POST">
-                                <input type="hidden" name="id_mindkids" value="<?=$row['id_mindkids']?>">
-                                <button type="submit">Editar</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <?php endwhile ?>
-                </tbody>
-            </table>
+            <div class="form-header">
+                <h2>Progresos</h2>
+                <button id="toggleTable" class="toggle-btn">+</button>
+            </div>
+            <div id="tablaWrapper" class="tabla-wrapper show">
+                <table id="muestra_datos">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Fecha</th>
+                            <th>Avance</th>
+                            <th>Curso</th>
+                            <th>Comentarios</th>
+                            <th>Editar</th>
+                            <!--<th>Cambiar Estatus</th>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while($row = mysqli_fetch_array($query)): ?>
+                        <tr>
+                            <td><?=$row['id_mindkids']?></td>
+                            <td><?=$row['fecha']?></td>
+                            <td><?=$row['avance']?></td>
+                            <td><?=$row['curso']?></td>
+                            <td><?=$row['comentarios']?></td>
+                            <!--<td><=$row['estatus']?></td>-->
+                            <td>
+                                <form action="update_mindkids.php" method="POST">
+                                    <input type="hidden" name="id_mindkids" value="<?=$row['id_mindkids']?>">
+                                    <button type="submit">Editar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <?php endwhile ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-    const toggleBtn = document.getElementById('toggleForm');
-    const userForm = document.getElementById('aerolabMindkids');
-    
-    toggleBtn.addEventListener('click', function() {
-        userForm.classList.toggle('show');
-        toggleBtn.classList.toggle('active');
-    });
+        const toggleBtn = document.getElementById('toggleForm');
+        const userForm = document.getElementById('aerolabMindkids');
 
-    // Animación para mostrar/ocultar la tabla
-    const toggleTableBtn = document.getElementById('toggleTable');
-    const tableContainer = document.querySelector('.table-container');
-    const table = document.getElementById('muestra_datos');
+        toggleBtn.addEventListener('click', function() {
+            userForm.classList.toggle('show');
+            toggleBtn.classList.toggle('active');
+        });
 
-    toggleTableBtn.addEventListener('click', function() {
-        // Controlar la visibilidad de la tabla con 'max-height' y 'opacity'
-        tableContainer.classList.toggle('show');
-        tableContainer.classList.toggle('hide');
+        // Solo ocultar la tabla, no el contenedor
+        const toggleTableBtn = document.getElementById('toggleTable');
+        const tablaWrapper = document.getElementById('tablaWrapper');
+
+        toggleTableBtn.addEventListener('click', function () {
+        tablaWrapper.classList.toggle('show');
+        tablaWrapper.classList.toggle('hide');
         toggleTableBtn.classList.toggle('active');
-    });
-});
 
+        // Cambia el símbolo del botón
+        if (toggleTableBtn.classList.contains('active')) {
+            toggleTableBtn.textContent = '×';
+        } else {
+            toggleTableBtn.textContent = '+';
+        }
+        }); 
+    });
     </script>
 </body>
 </html>
